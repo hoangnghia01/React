@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <title>Document</title>
+    <style>
+        #username-error {
+            color: red;
+            font-size: 50px;
+        }
+
+        #password-error {
+            color: red;
+            font-size: 50px;
+        }
+
+        #re-password-error {
+            color: red;
+            font-size: 50px;
+        }
+        #nhap-diem-error {
+            color: red;
+            font-size: 50px;
+        }
+        .toggle{
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="formLogin">
+        <input type="text" placeholder="username" name="username"><br>
+        <input type="password" placeholder="password" name="password"><br>
+        <input type="password" placeholder="re-password" name="re-password"><br>
+        <input type="text" placeholder="nhap diem" name="nhap-diem"><br>
+        <input type="submit" value="Login">
+        
+    </form>
+    <p id="p">loai</p>
+    <p class="test">remove</p>
+        <button id="run">run (get)</button>
+        <button id="set">run (set)</button>
+        <button id="add">add</button>
+        <button id="remove">remove</button>
+        <button id="toggle">toggle</button>
+    <script>
+        $(document).ready(function () {
+            $("#formLogin").validate({
+                rules: {
+                    "username": {
+                        required: true,
+                        maxlength: 10,
+                    },
+                    "password": {
+                        required: true,
+                        maxlength: 10,
+                    },
+                    "re-password": {
+                        required: true,
+                        minlength: 10,
+                        equalTo: "#password",
+                    },
+                    "nhap-diem":{
+                        required: true,
+                        number: true,
+                        range:[0, 10],
+                    },
+                },
+                messages: {
+                    "username": {
+                        required: "bat buoc nhap username",
+                        maxlength: "hay nhap toi da 10 ky tu",
+                    },
+                    "password": {
+                        required: "bat buoc nhap password",
+                        maxlength: "hay nhap toi da 10 ky tu",
+                    },
+                    "re-password": {
+                        required: "bat buoc nhap re-password",
+                        minlength: "hay nhap toi thieu 10 ky tu",
+                        equalTo: "nhap khong khop roi kia",
+                    },
+                    "nhap-diem":{
+                        required: "bat buoc nhap diem",
+                        number:"vui long nhap so",
+                        range:"nhap tu 0 den 10",
+                    },
+                }
+            })
+            $("#run").click(function(){
+                alert("meo: " + $("#p").text());
+            })
+            $("#set").click(function(){
+                $("#p").text("heo");
+               
+            })
+            $("#add").click(function(){
+                $("#p").append(" cho, meo")
+            })
+            $("#remove").click(function(){
+                $("p").remove(".test");
+            })
+            $("#toggle").click(function(){
+                $("p").toggleClass("toggle"); //toogle class
+            })
+        })
+    </script>
+</body>
+
+</html>
